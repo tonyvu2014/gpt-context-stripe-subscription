@@ -2,13 +2,13 @@ const prices = {};
 
 // Replace with your Firebase project config.
 const firebaseConfig = {
-  apiKey: 'AIzaSyAEGmffBNUsVrdVS_iyiI4eUMOWWp4Q5dI',
-  authDomain: 'stripe-subs-ext.firebaseapp.com',
-  databaseURL: 'https://stripe-subs-ext.firebaseio.com',
-  projectId: 'stripe-subs-ext',
-  storageBucket: 'stripe-subs-ext.appspot.com',
-  messagingSenderId: '955066520266',
-  appId: '1:955066520266:web:ec7135a76fea7a1bce9a33',
+  apiKey: "AIzaSyDVeSP_I30Io3s6wHIgbzZCGg_uuIMXr60",
+  authDomain: "stripe-subscription-payment.firebaseapp.com",
+  projectId: "stripe-subscription-payment",
+  storageBucket: "stripe-subscription-payment.firebasestorage.app",
+  messagingSenderId: "708639114056",
+  appId: "1:708639114056:web:621780405cbe98e8d5e97d",
+  measurementId: "G-HJNGKG0L31"
 };
 
 // Replace with your cloud functions location
@@ -42,9 +42,9 @@ const firebaseUiConfig = {
   ],
   credentialHelper: firebaseui.auth.CredentialHelper.NONE,
   // Your terms of service url.
-  tosUrl: 'https://example.com/terms',
+  tosUrl: 'https://gptcontext.app/terms',
   // Your privacy policy url.
-  privacyPolicyUrl: 'https://example.com/privacy',
+  privacyPolicyUrl: 'https://gptcontext.app/privacy',
 };
 firebase.auth().onAuthStateChanged((firebaseUser) => {
   if (firebaseUser) {
@@ -212,7 +212,7 @@ document
     const functionRef = firebase
       .app()
       .functions(functionLocation)
-      .httpsCallable('ext-firestore-stripe-subscriptions-createPortalLink');
+      .httpsCallable('ext-firestore-stripe-payments-createPortalLink');
     const { data } = await functionRef({ returnUrl: window.location.origin });
     window.location.assign(data.url);
   });

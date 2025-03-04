@@ -1,7 +1,7 @@
 {
-  "name": "firestore-stripe-subscriptions-extension-demo",
+  "name": "stripe-subscriptions-payment",
   "version": "1.0.0",
-  "description": "Demo application for the firestore-stripe-subscriptions extension.",
+  "description": "Application for the stripe-subscription-payment",
   "main": "/public/index.html",
   "scripts": {
     "dev": "firebase serve",
