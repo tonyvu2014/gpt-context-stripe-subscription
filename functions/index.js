@@ -30,43 +30,43 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const db = getFirestore();
 
-exports.getCustomerSubscriptionByEmail = onRequest({ region: "us-east1" },
-    async (request, response) => {
-        response.set('Access-Control-Allow-Origin', "*");
-        response.set("Access-Control-Allow-Headers",
-            "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
+exports.getCustomerSubscriptionByEmail = onRequest({ region: "us-east1",
+    maxInstances: 8, timeoutSeconds: 90 }, async (request, response) => {
+    response.set('Access-Control-Allow-Origin', "*");
+    response.set("Access-Control-Allow-Headers",
+        "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
             "Content-Type, Access-Control-Request-Method, " +
             "Access-Control-Request-Headers");
 
-        const email = request.query.email;
-        if (!email) {
-            return response.status(400).send("Email is missing");
-        }
-        logger.info(`Getting customer with email: ${email}`);
-
-        const customersRef = db.collection("customers");
-        const customerSnapshot = await customersRef.where("email", "==", email)
-            .get();
-
-        if (customerSnapshot.empty) {
-            return response.status(404)
-                .send("No customer found with that email");
-        }
-
-        const customer = customerSnapshot.docs[0];
-        const subscriptionSnapshot = await db.collection("customers")
-            .doc(`${customer.id}`)
-            .collection('subscriptions')
-            .where('status', 'in', ['trialing', 'active'])
-            .get();
-
-        // Expect to have only 1 subscription
-        const subscriptions = subscriptionSnapshot.docs.map((doc) => {
-            return {
-                id: doc.id
-            };
-        });
-
-        return response.status(200).json(subscriptions);
+    const email = request.query.email;
+    if (!email) {
+        return response.status(400).send("Email is missing");
     }
+    logger.info(`Getting customer with email: ${email}`);
+
+    const customersRef = db.collection("customers");
+    const customerSnapshot = await customersRef.where("email", "==", email)
+        .get();
+
+    if (customerSnapshot.empty) {
+        return response.status(404)
+            .send("No customer found with that email");
+    }
+
+    const customer = customerSnapshot.docs[0];
+    const subscriptionSnapshot = await db.collection("customers")
+        .doc(`${customer.id}`)
+        .collection('subscriptions')
+        .where('status', 'in', ['trialing', 'active'])
+        .get();
+
+    // Expect to have only 1 subscription
+    const subscriptions = subscriptionSnapshot.docs.map((doc) => {
+        return {
+            id: doc.id
+        };
+    });
+
+    return response.status(200).json(subscriptions);
+}
 );
