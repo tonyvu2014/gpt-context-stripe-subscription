@@ -126,6 +126,7 @@ function startDataListeners() {
       if (snapshot.empty) {
         // Show products
         document.querySelector('#subscribe').style.display = 'block';
+        document.querySelector('#signout').style.display = 'inline';
         return;
       }
       document.querySelector('#subscribe').style.display = 'none';
