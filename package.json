@@ -1,7 +1,7 @@
 {
-  "name": "stripe-subscriptions-payment",
+  "name": "gpt-context-stripe-subscription",
   "version": "1.0.0",
-  "description": "Application for the stripe-subscription-payment",
+  "description": "Application for the gpt-context-stripe-subscription",
   "main": "/public/index.html",
   "scripts": {
     "dev": "firebase serve",

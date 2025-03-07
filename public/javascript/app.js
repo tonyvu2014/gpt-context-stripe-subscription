@@ -38,7 +38,7 @@ const firebaseUiConfig = {
   signInSuccessUrl: '/',
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    // firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
   credentialHelper: firebaseui.auth.CredentialHelper.NONE,
   // Your terms of service url.
@@ -129,18 +129,20 @@ function startDataListeners() {
         return;
       }
       document.querySelector('#subscribe').style.display = 'none';
+      document.querySelector('#signout').style.display = 'inline';
       document.querySelector('#my-subscription').style.display = 'block';
       // In this implementation we only expect one Subscription to exist
       const subscription = snapshot.docs[0].data();
       const priceData = (await subscription.price.get()).data();
+      console.log('priceData', priceData);
       document.querySelector(
         '#my-subscription p'
-      ).textContent = `You are paying ${new Intl.NumberFormat('en-US', {
+      ).innerHTML = `You are paying ${new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: priceData.currency,
       }).format((priceData.unit_amount / 100).toFixed(2))} per ${
         priceData.interval
-      }, giving you the role: ${await getCustomClaimRole()}. 🥳`;
+      } for the plan "${priceData.description}". Check out the <a href='https://gptcontext.app/pricing' target='_blank' rel='noopener noreferrer'>plan's details here</a>. 🥳`;
     });
 }
 

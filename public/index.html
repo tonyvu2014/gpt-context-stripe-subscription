@@ -3,22 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stripe Subscriptions Firebase Extension</title>
+    <title>GPT Context Stripe Subscription</title>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/GPT_Context_Favicon.png"
+    />
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <header>
-      <a href="/" rel="home">Stripe Subscriptions Firebase Extension</a>
+      <a href="/" rel="home">Stripe Subscription for GPT Context Extension</a>
+      <span id="signout" style="display: none;">Sign Out</span>
     </header>
 
     <section id="firebaseui-auth-container">
       <div id="loader">Loading &hellip;</div>
     </section>
     <main>
-      <button type="button" id="signout">Sign out</button>
       <div id="subscribe">
         <h2>Subscribe</h2>
-        <div class="test-card-notice">
+        <!-- <div class="test-card-notice">
           Use any of the
           <a
             href="https://stripe.com/docs/testing#cards"
@@ -30,11 +36,13 @@
           <div class="card-number">
             4242<span></span>4242<span></span>4242<span></span>4242
           </div>
-        </div>
+        </div> -->
         <section class="products"></section>
       </div>
       <section id="my-subscription">
         <h2>My subscription</h2>
+        <p></p>
+        <p></p>
         <p></p>
         <h3>View invoices, update subscription & payment methods</h3>
         <button id="billing-portal-button">Access customer portal</button>
@@ -43,12 +51,12 @@
 
     <footer>
       <p>
-        Made with ❤️ and ☕️ by Stripe & Firebase | View
+        Made with ❤️ and ☕️ by
         <a
-          href="https://github.com/stripe-samples/firebase-subscription-payments"
+          href="https://gptcontext.app"
           target="_blank"
           rel="noopener noreferrer"
-          >source</a
+          >GPT Context</a
         >
       </p>
     </footer>
