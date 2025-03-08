@@ -138,12 +138,12 @@ function startDataListeners() {
       console.log('priceData', priceData);
       document.querySelector(
         '#my-subscription p'
-      ).innerHTML = `You are paying ${new Intl.NumberFormat('en-US', {
+      ).innerHTML = `You have subscribed to the plan "${priceData.description}" (${new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: priceData.currency,
       }).format((priceData.unit_amount / 100).toFixed(2))} per ${
         priceData.interval
-      } for the plan "${priceData.description}". Check out the <a href='https://gptcontext.app/pricing' target='_blank' rel='noopener noreferrer'>plan's details here</a>. 🥳`;
+      }) . Check out the <a href='https://gptcontext.app/pricing' target='_blank' rel='noopener noreferrer'>plan's details here</a>. 🥳`;
     });
 }
 
