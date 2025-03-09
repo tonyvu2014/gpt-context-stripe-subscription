@@ -13,15 +13,7 @@
       {
         "source": "**",
         "destination": "/index.html"
-      },
-      {
-        "source": "/getSubscription",
-        "function": {
-          "functionId": "getCustomerSubscriptionByEmail",
-          "region": "us-east1",
-          "pinTag": true   
-        }
-      } 
+      }
     ]
   },
   "functions": [
